@@ -1,15 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package trabalhoppioo;
 
-/**
- *
- * @author LionsWrath
- */
 public class Assassino extends Body {
     
     private int dano;
@@ -34,12 +24,14 @@ public class Assassino extends Body {
     //Arrumar o retorno depois
     @Override
     public int atacar(Personagem atacado) {
-        float coeficiente = (((float)atacado.getResistencia() + (float)atacado.getBonusResistencia())/100)/3;
-        atacado.setQuantidadeVida((int) (atacado.getQuantidadeVida() - (this.getBonusDano() + this.getDano() - ((this.getBonusDano() + this.getDano())*coeficiente))));
+        float coeficiente = (((float)atacado.getResistencia() + (float)atacado.getBonusResistencia())/10);
+        atacado.setQuantidadeVida((int) (atacado.getQuantidadeVida() - ((this.getBonusDano() + this.getDano())/coeficiente)));
         atacado.setBonusResistencia(0);
         this.setBonusDano(0);
         
-        return (int)(this.getBonusDano() + this.getDano() - ((this.getBonusDano() + this.getDano())*coeficiente));
+        System.out.println("Dano: " + (float)this.getDano() + " Dano bonus: " + (float)this.getBonusDano() + " Coeficiente: " + coeficiente + " Vida antes: " + atacado.getMaxvida() + " Vida: " + atacado.getQuantidadeVida());
+        
+        return (int)((this.getBonusDano() + this.getDano())*coeficiente);
     }
 
     @Override
@@ -50,7 +42,9 @@ public class Assassino extends Body {
     //Verificar retorno depois
     @Override
     public void conjurar() {
-        int coeficiente = ((this.getQuantidadeVida()*100)/150);
-        this.setBonusDano(this.getDano()*coeficiente);
+        float coeficiente = ((this.getQuantidadeVida())/150);
+        this.setBonusDano((int) (this.getDano()*coeficiente));
+        
+        System.out.println("Dano Bonus: " + (int) (this.getDano()*coeficiente) + "Comparação: " + this.getBonusDano());
     }
 }

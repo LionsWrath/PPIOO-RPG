@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package trabalhoppioo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author LionsWrath
- */
 public class Player {
 
     ArrayList<Personagem> listaPersonagens = new ArrayList();
@@ -62,7 +52,7 @@ public class Player {
 
     public void removerPersonagem() {
         try {
-            if (this.listaPersonagens.isEmpty() == true){
+            if (this.listaPersonagens.isEmpty()){
                 throw new PlayerException();
             }
             this.listaPersonagens.remove(listaPersonagens.size()-1);
@@ -70,6 +60,17 @@ public class Player {
             //Inventar algo para fazer aqui
         }
     };
+    
+    public void removerPersonagem(int index) {
+        try {
+            if (this.listaPersonagens.isEmpty() || this.listaPersonagens.size() < index ) {
+                throw new PlayerException();
+            }
+            this.listaPersonagens.remove(index);
+        } catch (PlayerException pe) {
+            //
+        }
+    }
     
     public void verificarLimite(int num) throws PlayerException{
         if (num == 10){

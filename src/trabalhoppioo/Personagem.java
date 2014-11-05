@@ -1,19 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package trabalhoppioo;
 
-/**
- *
- * @author LionsWrath
- */
 public abstract class Personagem {
 
     private String nome;
     private int quantidadeVida;
+    private int maxvida;
     
     private int bonusDano = 0;
     private int bonusResistencia = 0;
@@ -21,6 +12,7 @@ public abstract class Personagem {
     public Personagem(String nome, int quantidadeVida) {
         setNome(nome);
         this.quantidadeVida = quantidadeVida;
+        this.maxvida = quantidadeVida;
     }
 
     //Getters e Setters
@@ -49,6 +41,9 @@ public abstract class Personagem {
         if (this.quantidadeVida < 0) {
             this.quantidadeVida = 0;
         }
+        if (this.quantidadeVida > this.maxvida) {
+            this.quantidadeVida = this.maxvida;
+        }
     }
 
     //
@@ -73,6 +68,10 @@ public abstract class Personagem {
         if (this.bonusResistencia > 100) {
             this.bonusResistencia = 100;
         }
+    }
+
+    public int getMaxvida() {
+        return maxvida;
     }
     
     //Métodos abstratos

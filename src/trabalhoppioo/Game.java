@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package trabalhoppioo;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
@@ -25,21 +20,24 @@ public class Game {
         int randomNum = randomGenerator.nextInt(100);
         if (randomNum > 25 && randomNum <=50) {
             atacado.defender();
+            System.out.println(atacado.getNome() + " defendeu!");
         }
-        
-        System.out.println("Random: " + randomNum);
-        
         
         int dano = atacante.atacar(atacado);
         
-        System.out.println("Dano: " + dano);
+        if (atacado.getQuantidadeVida() == 0) {
+            System.out.println("Morto: " + atacado.getNome());
+            this.removerPersonagem(indexComputer);
+        }
     };
     
     public void curarPersonagem(int indexPers,int indexComputer) {
-        Mind mind = (Mind)player.getListaPersonagens().get(indexPers);
-        Personagem alvo = computer.getListaPersonagens().get(indexComputer);
-        
-        mind.conjurar(alvo);
+        if (this.player.getListaPersonagens().get(indexPers) instanceof Mind) {
+            Mind mind = (Mind)player.getListaPersonagens().get(indexPers);
+            Personagem alvo = computer.getListaPersonagens().get(indexComputer);
+            
+            mind.conjurar(alvo);
+        }
     };
     
     public void conjurarPersonagem(int indexPers) {
@@ -78,9 +76,16 @@ public class Game {
         randomNum = randomGenerator.nextInt(100);
         if (randomNum > 25 && randomNum <=50) {
             atacado.defender();
+            System.out.println(atacado.getNome() + " defendeu!");
         }
         
         atacante.atacar(atacado);
+        
+        //Checar se o atacado está morto
+        
+        if (atacado.getQuantidadeVida() == 0) {
+            this.removerPersonagem(indexComputer);
+        }
     };
     
     public void curarPersonagem(int indexComputer){
@@ -153,6 +158,12 @@ public class Game {
         computer.removerPersonagem();
         //System.out.println("Personagem " + nome + " removido.");
     };
+    
+    public void removerPersonagem(int index) {
+        //A remoção tem que ser realizada ou utilizando cast ou por index
+        player.removerPersonagem(index);
+        computer.removerPersonagem(index);
+    }
     
     public void verificarRepeticao(String nome) throws PlayerException{
         for (Personagem p : player.getListaPersonagens()) {

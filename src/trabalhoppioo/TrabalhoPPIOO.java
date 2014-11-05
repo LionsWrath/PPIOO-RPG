@@ -1,15 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package trabalhoppioo;
 
-/**
- *
- * @author LionsWrath
- */
 public class TrabalhoPPIOO {
 
     //To do:
@@ -18,8 +8,11 @@ public class TrabalhoPPIOO {
         //-Corrigir magias de cura(Coeficiente) - ok
         //-Melhorar randomização de araques - opcional
         //-Corrigir ataques do computador - ok
-        //-Verificação de personagens mortos
+        //-Verificação de personagens mortos - Testar
         //-Interface
+        //-Numero de vida limite na criação - testar
+        //-Corrigir magias (Não está pegando certo)
+        //-retirar/arrumar prints para interface
         //-etc
     
     public static void main(String[] args) {
@@ -34,9 +27,10 @@ public class TrabalhoPPIOO {
         game.adicionarMago("Melchior");
         game.adicionarMago("Melchior");
         game.adicionarMago("Hueragem");
-    
+        
         game.conjurarPersonagem(0);
-        game.atacarPersonagem(0, 1);
+        game.atacarPersonagem(0, 2);
+        
         game.atacarPersonagem(1, 1);
         game.conjurarPersonagem(2);
         game.atacarPersonagem(2, 1);
@@ -47,9 +41,6 @@ public class TrabalhoPPIOO {
         game.randomizeAction(1);
         game.randomizeAction(2);
         game.randomizeAction(3);
-
-        
-        
     }
     
 }
