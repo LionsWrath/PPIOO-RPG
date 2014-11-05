@@ -49,16 +49,14 @@ public class Guardião extends Mind {
 
     @Override
     public float calcularFatorIncremento() {
-        float coeficiente = ((this.getQuantidadeVida()*100)/450);
+        float coeficiente = ((this.getQuantidadeVida())/450);
         return (this.getFatorIncremento() - this.getFatorIncremento()*coeficiente);
     }
 
     @Override
     public void conjurar(Personagem alvo) {
         try {
-            if (equals(alvo)) {
-                throw new MindException();
-            }
+            equals(alvo);
             alvo.setQuantidadeVida((int) (alvo.getQuantidadeVida() + (alvo.getQuantidadeVida()*this.calcularFatorIncremento())));
             alvo.setBonusResistencia((int) (alvo.getBonusResistencia() + (10*this.calcularFatorIncremento())));
             alvo.setBonusDano((int) (alvo.getBonusDano() + (5*this.calcularFatorIncremento())));
@@ -68,13 +66,12 @@ public class Guardião extends Mind {
         }
     }
     
-    public boolean equals(Personagem alvo) {
+    public void equals(Personagem alvo) throws MindException {
         if (alvo instanceof Guardião) {
             Guardião th = (Guardião)alvo;
-            if (th.getNome() == this.getNome()){
-                return true;
+            if (th.getNome().equals(this.getNome())){
+                throw new MindException();
             }
         }
-        return false;
     };
 }

@@ -14,9 +14,12 @@ public class TrabalhoPPIOO {
 
     //To do:
         //-Ver se as exceptions estão funcionando
-        //-Verificação de mesmo nome
-        //-Corrigir magias de cura(Coeficiente)
-        //-Melhorar randomização de araques
+        //-Verificação de mesmo nome na criação de personagens - Arrumar exceptions
+        //-Corrigir magias de cura(Coeficiente) - ok
+        //-Melhorar randomização de araques - opcional
+        //-Corrigir ataques do computador - ok
+        //-Verificação de personagens mortos
+        //-Interface
         //-etc
     
     public static void main(String[] args) {
@@ -29,7 +32,9 @@ public class TrabalhoPPIOO {
         game.adicionarGuerreiro("Berserk");
         game.adicionarMago("Barbosa");
         game.adicionarMago("Melchior");
-        
+        game.adicionarMago("Melchior");
+        game.adicionarMago("Hueragem");
+    
         game.conjurarPersonagem(0);
         game.atacarPersonagem(0, 1);
         game.atacarPersonagem(1, 1);
