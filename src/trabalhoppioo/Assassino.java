@@ -26,17 +26,16 @@ public class Assassino extends Body {
     public int atacar(Personagem atacado) {
         float coeficiente = (((float)atacado.getResistencia() + (float)atacado.getBonusResistencia())/10);
         atacado.setQuantidadeVida((int) (atacado.getQuantidadeVida() - ((this.getBonusDano() + this.getDano())/coeficiente)));
-        atacado.setBonusResistencia(0);
-        this.setBonusDano(0);
-        
         System.out.println("Dano: " + (float)this.getDano() + " Dano bonus: " + (float)this.getBonusDano() + " Coeficiente: " + coeficiente + " Vida antes: " + atacado.getMaxvida() + " Vida: " + atacado.getQuantidadeVida());
+        atacado.zeroBonusResistencia();
+        this.zeroBonusDano();
         
         return (int)((this.getBonusDano() + this.getDano())*coeficiente);
     }
 
     @Override
     public void defender() {
-        this.setBonusResistencia(this.getBonusResistencia()+this.getResistencia()/3);
+        this.setBonusResistencia(this.getBonusResistencia()+this.getResistencia()/2);
     }
     
     //Verificar retorno depois
@@ -45,6 +44,6 @@ public class Assassino extends Body {
         float coeficiente = ((this.getQuantidadeVida())/150);
         this.setBonusDano((int) (this.getDano()*coeficiente));
         
-        System.out.println("Dano Bonus: " + (int) (this.getDano()*coeficiente) + "Comparação: " + this.getBonusDano());
+        System.out.println("Dano Bonus: " + (int)(this.getDano()*coeficiente) + " Comparação: " + this.getBonusDano());
     }
 }

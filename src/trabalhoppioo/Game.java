@@ -32,18 +32,28 @@ public class Game {
     };
     
     public void curarPersonagem(int indexPers,int indexComputer) {
-        if (this.player.getListaPersonagens().get(indexPers) instanceof Mind) {
-            Mind mind = (Mind)player.getListaPersonagens().get(indexPers);
-            Personagem alvo = computer.getListaPersonagens().get(indexComputer);
-            
-            mind.conjurar(alvo);
+        try {
+            if (this.player.getListaPersonagens().get(indexPers) instanceof Mind) {
+                ((Mind)player.getListaPersonagens().get(indexPers)).conjurar(computer.getListaPersonagens().get(indexComputer));
+            } else {
+                throw new GameException();
+            }
+        } catch (GameException ge) {
+            //use here
         }
     };
     
     public void conjurarPersonagem(int indexPers) {
-        Body body = (Body)player.getListaPersonagens().get(indexPers);
-        
-        body.conjurar();
+        try {
+            if (this.player.getListaPersonagens().get(indexPers) instanceof Body) {
+                ((Body)player.getListaPersonagens().get(indexPers)).conjurar();
+                System.out.println(" Comparação: " + this.player.getListaPersonagens().get(indexPers).getBonusDano());
+            } else {
+                throw new GameException();
+            }
+        } catch (GameException ge) {
+            //use here
+        }
     };
     
     //Computer - Implementar
@@ -88,18 +98,32 @@ public class Game {
         }
     };
     
+    //Movimentos do Computador
     public void curarPersonagem(int indexComputer){
-        Mind curador = (Mind)computer.getListaPersonagens().get(indexComputer);
-        Random randomGenerator = new Random();
+        try {
+            if (this.computer.getListaPersonagens().get(indexComputer) instanceof Mind){
+                Random randomGenerator = new Random();
         
-        int randomNum = randomGenerator.nextInt(computer.getListaPersonagens().size() - 1);
-        Personagem curado = computer.getListaPersonagens().get(randomNum);
-        curador.conjurar(curado);
+                int randomNum = randomGenerator.nextInt(computer.getListaPersonagens().size() - 1);
+                ((Mind)this.computer.getListaPersonagens().get(indexComputer)).conjurar(this.computer.getListaPersonagens().get(randomNum));
+            } else {
+                throw new GameException();
+            }
+        } catch (GameException ge) {
+            //
+        }
     };
 
     public void conjurarPersonagemComputer(int indexComputer){
-        Body conjurador = (Body)computer.getListaPersonagens().get(indexComputer);
-        conjurador.conjurar();
+        try {
+            if (this.computer.getListaPersonagens().get(indexComputer) instanceof Body) {
+                ((Body)computer.getListaPersonagens().get(indexComputer)).conjurar();
+            } else {
+                throw new GameException();
+            }
+        } catch (GameException ge) {
+            //
+        }
     };
     
     //Inserir Personagens

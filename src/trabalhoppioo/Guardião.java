@@ -1,4 +1,4 @@
-package trabalhoppioo;
+    package trabalhoppioo;
 
 public class Guardião extends Mind {
     
@@ -26,8 +26,8 @@ public class Guardião extends Mind {
     public int atacar(Personagem atacado) {
         float coeficiente = (((float)atacado.getResistencia() + (float)atacado.getBonusResistencia())/10);
         atacado.setQuantidadeVida((int) (atacado.getQuantidadeVida() - ((this.getBonusDano() + this.getDano())/coeficiente)));
-        atacado.setBonusResistencia(0);
-        this.setBonusDano(0);
+        atacado.zeroBonusResistencia();
+        this.zeroBonusDano();
         
         System.out.println("Dano: " + (float)this.getDano() + " Dano bonus: " + (float)this.getBonusDano() + " Coeficiente: " + coeficiente + " Vida antes: " + atacado.getMaxvida() + " Vida: " + atacado.getQuantidadeVida());
         
@@ -49,10 +49,10 @@ public class Guardião extends Mind {
     public void conjurar(Personagem alvo) {
         try {
             equals(alvo);
-            alvo.setQuantidadeVida((int) (alvo.getQuantidadeVida() + (alvo.getQuantidadeVida()*this.calcularFatorIncremento())));
+            alvo.setQuantidadeVida((int) (alvo.getQuantidadeVida() + (alvo.getMaxvida()*this.calcularFatorIncremento())));
             alvo.setBonusResistencia((int) (alvo.getBonusResistencia() + (10*this.calcularFatorIncremento())));
             alvo.setBonusDano((int) (alvo.getBonusDano() + (5*this.calcularFatorIncremento())));
-            System.out.println("Heal: " + this.calcularFatorIncremento() + " Alvo: " + alvo.getNome());
+            System.out.println("Heal: " + this.calcularFatorIncremento() + " Alvo: " + alvo.getNome() + " Vida atual: " + alvo.getQuantidadeVida() );
         } catch (MindException ce) {
             //
         }

@@ -6,13 +6,15 @@ public abstract class Personagem {
     private int quantidadeVida;
     private int maxvida;
     
-    private int bonusDano = 0;
-    private int bonusResistencia = 0;
+    private int bonusDano;
+    private int bonusResistencia;
 
     public Personagem(String nome, int quantidadeVida) {
         setNome(nome);
         this.quantidadeVida = quantidadeVida;
         this.maxvida = quantidadeVida;
+        this.bonusDano = 0;
+        this.bonusResistencia = 0;
     }
 
     //Getters e Setters
@@ -52,10 +54,11 @@ public abstract class Personagem {
     }
 
     public void setBonusDano(int bonusDano) {
-        this.bonusDano = bonusDano;
-        if (this.bonusDano > 100) {
-            this.bonusDano = 100;
-        }
+        this.bonusDano = this.bonusDano + bonusDano;
+    }
+    
+    public void zeroBonusDano() {
+        this.bonusDano = 0;
     }
 
     //
@@ -64,10 +67,11 @@ public abstract class Personagem {
     }
 
     public void setBonusResistencia(int bonusResistencia) {
-        this.bonusResistencia = bonusResistencia;
-        if (this.bonusResistencia > 100) {
-            this.bonusResistencia = 100;
-        }
+        this.bonusResistencia = this.bonusResistencia + bonusResistencia;
+    }
+    
+    public void zeroBonusResistencia() {
+        this.bonusResistencia = 0;
     }
 
     public int getMaxvida() {

@@ -11,7 +11,7 @@ public class TrabalhoPPIOO {
         //-Verificação de personagens mortos - Testar
         //-Interface
         //-Numero de vida limite na criação - testar
-        //-Corrigir magias (Não está pegando certo)
+        //-Corrigir magias - testar
         //-retirar/arrumar prints para interface
         //-etc
     
@@ -28,9 +28,17 @@ public class TrabalhoPPIOO {
         game.adicionarMago("Melchior");
         game.adicionarMago("Hueragem");
         
-        game.conjurarPersonagem(0);
-        game.atacarPersonagem(0, 2);
+        game.randomizeAction(0);
+        game.randomizeAction(0);
+        game.randomizeAction(0);
+        game.randomizeAction(0);
         
+        game.curarPersonagem(3, 0);
+        game.curarPersonagem(3, 1);
+        game.curarPersonagem(3, 2);
+        game.curarPersonagem(3, 3);
+        game.curarPersonagem(3, 4);
+              
         game.atacarPersonagem(1, 1);
         game.conjurarPersonagem(2);
         game.atacarPersonagem(2, 1);
