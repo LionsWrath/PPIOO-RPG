@@ -28,22 +28,26 @@ public class TrabalhoPPIOO {
         game.adicionarMago("Melchior");
         game.adicionarMago("Hueragem");
         
+        game.atacarPersonagem(0, 1);
+        game.atacarPersonagem(0, 1);
+        game.atacarPersonagem(0, 1);
+        game.atacarPersonagem(0, 1);
+        
+        game.curarPersonagem(3);
+        game.curarPersonagem(3);
+        game.curarPersonagem(3);
+        game.curarPersonagem(3);
+        
         game.randomizeAction(0);
-        game.randomizeAction(0);
-        game.randomizeAction(0);
-        game.randomizeAction(0);
+        game.randomizeAction(1);
+        game.randomizeAction(2);
+        game.randomizeAction(3);
         
         game.curarPersonagem(3, 0);
-        game.curarPersonagem(3, 1);
-        game.curarPersonagem(3, 2);
-        game.curarPersonagem(3, 3);
-        game.curarPersonagem(3, 4);
-              
-        game.atacarPersonagem(1, 1);
-        game.conjurarPersonagem(2);
-        game.atacarPersonagem(2, 1);
-        game.atacarPersonagem(3, 1);
-        //game.curarPersonagem(3, 3);
+        game.curarPersonagem(3, 0);
+        game.curarPersonagem(3, 0);
+        game.curarPersonagem(3, 0);
+        game.curarPersonagem(3, 0);
         
         game.randomizeAction(0);
         game.randomizeAction(1);

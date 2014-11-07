@@ -26,7 +26,7 @@ public class Guerreiro extends Body {
     public int atacar(Personagem atacado) {
         float coeficiente = (((float)atacado.getResistencia() + (float)atacado.getBonusResistencia())/10);
         atacado.setQuantidadeVida((int) (atacado.getQuantidadeVida() - ((this.getBonusDano() + this.getDano())/coeficiente)));
-        System.out.println("Dano: " + (float)this.getDano() + " Dano bonus: " + (float)this.getBonusDano() + " Coeficiente: " + coeficiente + " Vida antes: " + atacado.getMaxvida() + " Vida: " + atacado.getQuantidadeVida());
+        System.out.println("Dano: " + (float)this.getDano() + " Dano bonus: " + (float)this.getBonusDano() + " Coeficiente: " + coeficiente + " Vida: " + atacado.getQuantidadeVida());
         atacado.zeroBonusResistencia();
         this.zeroBonusDano();
             

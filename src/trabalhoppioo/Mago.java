@@ -29,7 +29,7 @@ public class Mago extends Mind {
         atacado.zeroBonusResistencia();
         this.zeroBonusDano();
         
-        System.out.println("Dano: " + (float)this.getDano() + " Dano bonus: " + (float)this.getBonusDano() + " Coeficiente: " + coeficiente + " Vida antes: " + atacado.getMaxvida() + " Vida: " + atacado.getQuantidadeVida());
+        System.out.println("Dano: " + (float)this.getDano() + " Dano bonus: " + (float)this.getBonusDano() + " Coeficiente: " + coeficiente + " Vida: " + atacado.getQuantidadeVida());
         
         return (int)((this.getBonusDano() + this.getDano())*coeficiente);
     }
@@ -41,7 +41,7 @@ public class Mago extends Mind {
 
     @Override
     public float calcularFatorIncremento() {
-        float coeficiente = ((this.getQuantidadeVida())/150);
+        float coeficiente = (((float)this.getQuantidadeVida())/150);
         return (this.getFatorIncremento()*coeficiente);
     }
 
@@ -50,8 +50,8 @@ public class Mago extends Mind {
         try {
             equals(alvo);
             System.out.println("Vida anterior: " + alvo.getQuantidadeVida());
-            alvo.setQuantidadeVida((int) (alvo.getQuantidadeVida() + (alvo.getMaxvida()*this.calcularFatorIncremento())));
-            System.out.println("Heal: " + this.calcularFatorIncremento() + " Alvo: " + alvo.getNome() + " Vida atual: " + alvo.getQuantidadeVida() );
+            alvo.setQuantidadeVida((int) (alvo.getQuantidadeVida() + this.calcularFatorIncremento()));
+            System.out.println("Heal: " + this.calcularFatorIncremento() + " Alvo: " + alvo.getNome() + " Vida atual: " + alvo.getQuantidadeVida() + " Vida: " + this.getQuantidadeVida() );
         } catch (MindException ce) {
             //
         }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
 
-    private ArrayList<Personagem> listaPersonagens = new ArrayList();
+    ArrayList<Personagem> listaPersonagens = new ArrayList();
 
     public Player() {
     }
@@ -80,6 +80,10 @@ public class Player {
 
     public ArrayList<Personagem> getListaPersonagens() {
         return listaPersonagens;
+    }
+    
+    public Personagem getPersonagem(int index) {
+        return listaPersonagens.get(index);
     }
     
 }

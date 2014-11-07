@@ -13,8 +13,8 @@ public class Game {
     
     //player
     public void atacarPersonagem(int indexPers, int indexComputer) {
-        Personagem atacante = player.getListaPersonagens().get(indexPers);
-        Personagem atacado = computer.getListaPersonagens().get(indexComputer);
+        Personagem atacante = player.getPersonagem(indexPers);
+        Personagem atacado = computer.getPersonagem(indexComputer);
         Random randomGenerator = new Random();
         
         int randomNum = randomGenerator.nextInt(100);
@@ -33,8 +33,8 @@ public class Game {
     
     public void curarPersonagem(int indexPers,int indexComputer) {
         try {
-            if (this.player.getListaPersonagens().get(indexPers) instanceof Mind) {
-                ((Mind)player.getListaPersonagens().get(indexPers)).conjurar(computer.getListaPersonagens().get(indexComputer));
+            if (this.player.getPersonagem(indexPers) instanceof Mind) {
+                ((Mind)player.getPersonagem(indexPers)).conjurar(player.getPersonagem(indexComputer));
             } else {
                 throw new GameException();
             }
@@ -45,9 +45,8 @@ public class Game {
     
     public void conjurarPersonagem(int indexPers) {
         try {
-            if (this.player.getListaPersonagens().get(indexPers) instanceof Body) {
-                ((Body)player.getListaPersonagens().get(indexPers)).conjurar();
-                System.out.println(" Comparação: " + this.player.getListaPersonagens().get(indexPers).getBonusDano());
+            if (this.player.getPersonagem(indexPers) instanceof Body) {
+                ((Body)player.getPersonagem(indexPers)).conjurar();
             } else {
                 throw new GameException();
             }
@@ -59,7 +58,7 @@ public class Game {
     //Computer - Implementar
     public void randomizeAction(int indexComputer){
         Random randomGenerator = new Random();
-        Personagem atual = computer.getListaPersonagens().get(indexComputer);
+        Personagem atual = computer.getPersonagem(indexComputer);
         
         int randomNum = randomGenerator.nextInt(2);
         
@@ -77,11 +76,11 @@ public class Game {
     };
     
     public void atacarPersonagem(int indexComputer){
-        Personagem atacante = computer.getListaPersonagens().get(indexComputer);
+        Personagem atacante = computer.getPersonagem(indexComputer);
         Random randomGenerator = new Random();
         
         int randomNum = randomGenerator.nextInt(player.getListaPersonagens().size()-1);
-        Personagem atacado = player.getListaPersonagens().get(randomNum);
+        Personagem atacado = player.getPersonagem(randomNum);
         
         randomNum = randomGenerator.nextInt(100);
         if (randomNum > 25 && randomNum <=50) {
@@ -101,11 +100,11 @@ public class Game {
     //Movimentos do Computador
     public void curarPersonagem(int indexComputer){
         try {
-            if (this.computer.getListaPersonagens().get(indexComputer) instanceof Mind){
+            if (this.computer.getPersonagem(indexComputer) instanceof Mind){
                 Random randomGenerator = new Random();
         
                 int randomNum = randomGenerator.nextInt(computer.getListaPersonagens().size() - 1);
-                ((Mind)this.computer.getListaPersonagens().get(indexComputer)).conjurar(this.computer.getListaPersonagens().get(randomNum));
+                ((Mind)this.computer.getPersonagem(indexComputer)).conjurar(this.computer.getPersonagem(randomNum));
             } else {
                 throw new GameException();
             }
@@ -116,8 +115,8 @@ public class Game {
 
     public void conjurarPersonagemComputer(int indexComputer){
         try {
-            if (this.computer.getListaPersonagens().get(indexComputer) instanceof Body) {
-                ((Body)computer.getListaPersonagens().get(indexComputer)).conjurar();
+            if (this.computer.getPersonagem(indexComputer) instanceof Body) {
+                ((Body)computer.getPersonagem(indexComputer)).conjurar();
             } else {
                 throw new GameException();
             }

@@ -40,12 +40,6 @@ public abstract class Personagem {
 
     public void setQuantidadeVida(int quantidadeVida) {
         this.quantidadeVida = quantidadeVida;
-        if (this.quantidadeVida < 0) {
-            this.quantidadeVida = 0;
-        }
-        if (this.quantidadeVida > this.maxvida) {
-            this.quantidadeVida = this.maxvida;
-        }
     }
 
     //

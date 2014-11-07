@@ -29,7 +29,7 @@ public class Guardião extends Mind {
         atacado.zeroBonusResistencia();
         this.zeroBonusDano();
         
-        System.out.println("Dano: " + (float)this.getDano() + " Dano bonus: " + (float)this.getBonusDano() + " Coeficiente: " + coeficiente + " Vida antes: " + atacado.getMaxvida() + " Vida: " + atacado.getQuantidadeVida());
+        System.out.println("Dano: " + (float)this.getDano() + " Dano bonus: " + (float)this.getBonusDano() + " Coeficiente: " + coeficiente + " Vida: " + atacado.getQuantidadeVida());
         
         return (int)((this.getBonusDano() + this.getDano())*coeficiente);
     }
@@ -49,10 +49,10 @@ public class Guardião extends Mind {
     public void conjurar(Personagem alvo) {
         try {
             equals(alvo);
-            alvo.setQuantidadeVida((int) (alvo.getQuantidadeVida() + (alvo.getMaxvida()*this.calcularFatorIncremento())));
-            alvo.setBonusResistencia((int) (alvo.getBonusResistencia() + (10*this.calcularFatorIncremento())));
-            alvo.setBonusDano((int) (alvo.getBonusDano() + (5*this.calcularFatorIncremento())));
-            System.out.println("Heal: " + this.calcularFatorIncremento() + " Alvo: " + alvo.getNome() + " Vida atual: " + alvo.getQuantidadeVida() );
+            alvo.setQuantidadeVida((int) (alvo.getQuantidadeVida() + this.calcularFatorIncremento()));
+            alvo.setBonusResistencia((int) (alvo.getBonusResistencia() + (this.calcularFatorIncremento()/2)));
+            alvo.setBonusDano((int) (alvo.getBonusDano() + (this.calcularFatorIncremento()/3)));
+            System.out.println("Heal: " + this.calcularFatorIncremento() + " Alvo: " + alvo.getNome() + "Vida: " + this.getQuantidadeVida() );
         } catch (MindException ce) {
             //
         }
