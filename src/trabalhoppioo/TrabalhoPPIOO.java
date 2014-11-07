@@ -28,10 +28,13 @@ public class TrabalhoPPIOO {
         game.adicionarMago("Melchior");
         game.adicionarMago("Hueragem");
         
-        game.atacarPersonagem(0, 1);
-        game.atacarPersonagem(0, 1);
-        game.atacarPersonagem(0, 1);
-        game.atacarPersonagem(0, 1);
+        game.atacarPersonagem(0, 0);
+        game.atacarPersonagem(0, 0);
+        game.atacarPersonagem(0, 0);
+        game.atacarPersonagem(0, 0);
+        game.atacarPersonagem(0, 0);
+        game.atacarPersonagem(0, 0);
+        game.atacarPersonagem(0, 0);
         
         game.curarPersonagem(3);
         game.curarPersonagem(3);

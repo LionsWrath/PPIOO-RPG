@@ -40,6 +40,12 @@ public abstract class Personagem {
 
     public void setQuantidadeVida(int quantidadeVida) {
         this.quantidadeVida = quantidadeVida;
+        if (this.quantidadeVida > (this.maxvida + this.maxvida*0.10)) {
+            this.quantidadeVida = this.maxvida;
+        }
+        if (this.quantidadeVida < 0) {
+            this.quantidadeVida = 0;
+        }
     }
 
     //
@@ -49,6 +55,9 @@ public abstract class Personagem {
 
     public void setBonusDano(int bonusDano) {
         this.bonusDano = this.bonusDano + bonusDano;
+        if (this.bonusDano > 150) {
+            this.bonusDano = 150;
+        }
     }
     
     public void zeroBonusDano() {
@@ -62,6 +71,9 @@ public abstract class Personagem {
 
     public void setBonusResistencia(int bonusResistencia) {
         this.bonusResistencia = this.bonusResistencia + bonusResistencia;
+        if (this.bonusResistencia > 100) {
+            this.bonusResistencia = 100;
+        }
     }
     
     public void zeroBonusResistencia() {
