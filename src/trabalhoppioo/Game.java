@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Game {
 
-    Player player = new Player();
+    public Player player = new Player();
     Player computer = new Player();
     
     public Game() {    
@@ -195,4 +195,8 @@ public class Game {
             }
         }
     };
+    
+    public int getIndex() {
+        return player.listaPersonagens.size();
+    }
 }
