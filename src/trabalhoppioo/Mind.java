@@ -19,6 +19,6 @@ public abstract class Mind extends Personagem {
     
     public abstract float calcularFatorIncremento();
     
-    public abstract void conjurar(Personagem alvo);
+    public abstract int conjurar(Personagem alvo);
 
 }

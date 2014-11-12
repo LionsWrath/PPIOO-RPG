@@ -31,7 +31,7 @@ public class Mago extends Mind {
         
         System.out.println("Dano: " + (float)this.getDano() + " Dano bonus: " + (float)this.getBonusDano() + " Coeficiente: " + coeficiente + " Vida: " + atacado.getQuantidadeVida());
         
-        return (int)((this.getBonusDano() + this.getDano())*coeficiente);
+        return (int)((this.getBonusDano() + this.getDano())/coeficiente);
     }
 
     @Override
@@ -46,15 +46,18 @@ public class Mago extends Mind {
     }
 
     @Override
-    public void conjurar(Personagem alvo) {
+    public int conjurar(Personagem alvo) {
         try {
             equals(alvo);
             System.out.println("Vida anterior: " + alvo.getQuantidadeVida());
             alvo.setQuantidadeVida((int) (alvo.getQuantidadeVida() + this.calcularFatorIncremento()));
             System.out.println("Heal: " + this.calcularFatorIncremento() + " Alvo: " + alvo.getNome() + " Vida atual: " + alvo.getQuantidadeVida() + " Vida: " + this.getQuantidadeVida() );
+            
+            return (int) this.calcularFatorIncremento();
         } catch (MindException ce) {
             //
         }
+        return 0;
 }
     
     public void equals(Personagem alvo) throws MindException {

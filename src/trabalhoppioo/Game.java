@@ -9,23 +9,24 @@ public class Game {
     }
     
     //player
-    public void atacarPersonagem(int indexPers, int indexComputer) {
+    public int atacarPersonagem(int indexPers, int indexComputer) {
         Personagem atacante = player.getPersonagem(indexPers);
         Personagem atacado = computer.getPersonagem(indexComputer);
         
-        int dano = atacante.atacar(atacado);
+        return atacante.atacar(atacado);
     };
     
-    public void curarPersonagem(int indexPers,int indexPers2) {
+    public int curarPersonagem(int indexPers,int indexPers2) {
         try {
             if (this.player.getPersonagem(indexPers) instanceof Mind) {
-                ((Mind)player.getPersonagem(indexPers)).conjurar(player.getPersonagem(indexPers2));
+                return ((Mind)player.getPersonagem(indexPers)).conjurar(player.getPersonagem(indexPers2));
             } else {
                 throw new GameException();
             }
         } catch (GameException ge) {
             //use here
         }
+        return 0;
     };
     
     public void conjurarPersonagem(int indexPers) {
@@ -42,23 +43,25 @@ public class Game {
     
     //Computer - Implementar
     
-    public void atacarPersonagemComputer(int indexComputer, int target){
+    public int atacarPersonagemComputer(int indexComputer, int target){
         Personagem atacante = computer.getPersonagem(indexComputer);
         Personagem atacado = player.getPersonagem(target);
-        atacante.atacar(atacado);
+        
+        return atacante.atacar(atacado);
     };
     
     //Movimentos do Computador
-    public void curarPersonagemComputer(int indexComputer, int target){
+    public int curarPersonagemComputer(int indexComputer, int target){
         try {
             if (this.computer.getPersonagem(indexComputer) instanceof Mind){
-                ((Mind)this.computer.getPersonagem(indexComputer)).conjurar(this.computer.getPersonagem(target));
+                return ((Mind)this.computer.getPersonagem(indexComputer)).conjurar(this.computer.getPersonagem(target));
             } else {
                 throw new GameException();
             }
         } catch (GameException ge) {
             //
         }
+        return 0;
     };
 
     public void conjurarPersonagemComputer(int indexComputer){

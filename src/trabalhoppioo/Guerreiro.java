@@ -30,7 +30,7 @@ public class Guerreiro extends Body {
         atacado.zeroBonusResistencia();
         this.zeroBonusDano();
             
-        return (int)((this.getBonusDano() + this.getDano())*coeficiente);
+        return (int)((this.getBonusDano() + this.getDano())/coeficiente);
     }
 
     @Override

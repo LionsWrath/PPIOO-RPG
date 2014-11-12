@@ -31,7 +31,7 @@ public class Guardião extends Mind {
         
         System.out.println("Dano: " + (float)this.getDano() + " Dano bonus: " + (float)this.getBonusDano() + " Coeficiente: " + coeficiente + " Vida: " + atacado.getQuantidadeVida());
         
-        return (int)((this.getBonusDano() + this.getDano())*coeficiente);
+        return (int)((this.getBonusDano() + this.getDano())/coeficiente);
     }
 
     @Override
@@ -50,16 +50,19 @@ public class Guardião extends Mind {
     }
 
     @Override
-    public void conjurar(Personagem alvo) {
+    public int conjurar(Personagem alvo) {
         try {
             equals(alvo);
             alvo.setQuantidadeVida((int) (alvo.getQuantidadeVida() + this.calcularFatorIncremento()));
             alvo.setBonusResistencia((int) (alvo.getBonusResistencia() + (this.calcularFatorIncremento()/2)));
             alvo.setBonusDano((int) (alvo.getBonusDano() + (this.calcularFatorIncremento()/3)));
             System.out.println("Heal: " + this.calcularFatorIncremento() + " Alvo: " + alvo.getNome() + "Vida: " + this.getQuantidadeVida() );
+            
+            return (int) this.calcularFatorIncremento();
         } catch (MindException ce) {
             //
         }
+        return 0;
     }
     
     public void equals(Personagem alvo) throws MindException {
