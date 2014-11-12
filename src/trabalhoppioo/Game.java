@@ -1,12 +1,9 @@
 package trabalhoppioo;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 public class Game {
 
     public Player player = new Player();
-    Player computer = new Player();
+    public Player computer = new Player();
     
     public Game() {    
     }
@@ -15,26 +12,14 @@ public class Game {
     public void atacarPersonagem(int indexPers, int indexComputer) {
         Personagem atacante = player.getPersonagem(indexPers);
         Personagem atacado = computer.getPersonagem(indexComputer);
-        Random randomGenerator = new Random();
-        
-        int randomNum = randomGenerator.nextInt(100);
-        if (randomNum > 25 && randomNum <=50) {
-            atacado.defender();
-            System.out.println(atacado.getNome() + " defendeu!");
-        }
         
         int dano = atacante.atacar(atacado);
-        
-        if (atacado.getQuantidadeVida() == 0) {
-            System.out.println("Morto: " + atacado.getNome());
-            this.removerPersonagem(indexComputer);
-        }
     };
     
-    public void curarPersonagem(int indexPers,int indexComputer) {
+    public void curarPersonagem(int indexPers,int indexPers2) {
         try {
             if (this.player.getPersonagem(indexPers) instanceof Mind) {
-                ((Mind)player.getPersonagem(indexPers)).conjurar(player.getPersonagem(indexComputer));
+                ((Mind)player.getPersonagem(indexPers)).conjurar(player.getPersonagem(indexPers2));
             } else {
                 throw new GameException();
             }
@@ -56,55 +41,18 @@ public class Game {
     };
     
     //Computer - Implementar
-    public void randomizeAction(int indexComputer){
-        Random randomGenerator = new Random();
-        Personagem atual = computer.getPersonagem(indexComputer);
-        
-        int randomNum = randomGenerator.nextInt(2);
-        
-        System.out.println("Randomizing: " + randomNum + "; Nome: " +  atual.getNome());
-        
-        if (randomNum == 0) {
-            if (atual instanceof Body){
-                conjurarPersonagemComputer(indexComputer);
-            } else {
-                curarPersonagem(indexComputer);
-            }
-        } else {
-            atacarPersonagem(indexComputer);
-        }
-    };
     
-    public void atacarPersonagem(int indexComputer){
+    public void atacarPersonagemComputer(int indexComputer, int target){
         Personagem atacante = computer.getPersonagem(indexComputer);
-        Random randomGenerator = new Random();
-        
-        int randomNum = randomGenerator.nextInt(player.getListaPersonagens().size()-1);
-        Personagem atacado = player.getPersonagem(randomNum);
-        
-        randomNum = randomGenerator.nextInt(100);
-        if (randomNum > 25 && randomNum <=50) {
-            atacado.defender();
-            System.out.println(atacado.getNome() + " defendeu!");
-        }
-        
+        Personagem atacado = player.getPersonagem(target);
         atacante.atacar(atacado);
-        
-        //Checar se o atacado está morto
-        
-        if (atacado.getQuantidadeVida() == 0) {
-            this.removerPersonagem(indexComputer);
-        }
     };
     
     //Movimentos do Computador
-    public void curarPersonagem(int indexComputer){
+    public void curarPersonagemComputer(int indexComputer, int target){
         try {
             if (this.computer.getPersonagem(indexComputer) instanceof Mind){
-                Random randomGenerator = new Random();
-        
-                int randomNum = randomGenerator.nextInt(computer.getListaPersonagens().size() - 1);
-                ((Mind)this.computer.getPersonagem(indexComputer)).conjurar(this.computer.getPersonagem(randomNum));
+                ((Mind)this.computer.getPersonagem(indexComputer)).conjurar(this.computer.getPersonagem(target));
             } else {
                 throw new GameException();
             }
@@ -131,7 +79,7 @@ public class Game {
         try {
             this.verificarRepeticao(nome);
             player.inserirGuardiao(nome);
-            computer.inserirGuardiao("Sombra de " + nome);
+            computer.inserirGuardiao("Sombra " + nome);
             System.out.println("Personagem " + nome + " adicionado.");
         } catch (PlayerException pe) {
             //Do something
@@ -143,11 +91,9 @@ public class Game {
         try {
             this.verificarRepeticao(nome);
             player.inserirAssassino(nome);
-            computer.inserirAssassino("Sombra de " + nome);
+            computer.inserirAssassino("Sombra " + nome);
             System.out.println("Personagem " + nome + " adicionado.");
         } catch (PlayerException pe) {
-            //Do something
-            System.out.println("Nome repetido. Numero de Personagens: " + player.getListaPersonagens().size());
         }
     };
     
@@ -155,11 +101,9 @@ public class Game {
         try {
             this.verificarRepeticao(nome);
             player.inserirGuerreiro(nome);
-            computer.inserirGuerreiro("Sombra de " + nome);
+            computer.inserirGuerreiro("Sombra " + nome);
             System.out.println("Personagem " + nome + " adicionado.");
         } catch (PlayerException pe) {
-            //Do something
-            System.out.println("Nome repetido. Numero de Personagens: " + player.getListaPersonagens().size());
         }
     };
     
@@ -167,11 +111,9 @@ public class Game {
         try {
             this.verificarRepeticao(nome);
             player.inserirMago(nome);
-            computer.inserirMago("Sombra de " + nome);
+            computer.inserirMago("Sombra " + nome);
             System.out.println("Personagem " + nome + " adicionado.");
         } catch (PlayerException pe) {
-            //Do something
-            System.out.println("Nome repetido. Numero de Personagens: " + player.getListaPersonagens().size());
         }
     };
     
@@ -179,12 +121,18 @@ public class Game {
         
         player.removerPersonagem();
         computer.removerPersonagem();
-        //System.out.println("Personagem " + nome + " removido.");
     };
     
     public void removerPersonagem(int index) {
-        //A remoção tem que ser realizada ou utilizando cast ou por index
         player.removerPersonagem(index);
+        computer.removerPersonagem(index);
+    }
+    
+    public void removerMortoPlayer(int index) {
+        player.removerPersonagem(index);
+    }
+    
+    public void removerMortoComputer(int index) {
         computer.removerPersonagem(index);
     }
     

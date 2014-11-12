@@ -7,7 +7,7 @@ public class Guardião extends Mind {
     
     public Guardião(String nome) {
         super(15, nome, 450);
-        this.dano = 10;
+        this.dano = 15;
         this.resistencia = 55;
     }
 
@@ -41,8 +41,12 @@ public class Guardião extends Mind {
 
     @Override
     public float calcularFatorIncremento() {
-        float coeficiente = ((this.getQuantidadeVida())/450);
-        return (this.getFatorIncremento() - this.getFatorIncremento()*coeficiente);
+        float coeficiente = (float) ((this.getQuantidadeVida())/450);
+        if (coeficiente == 1) {
+            return (float) (this.getFatorIncremento() - 0.1);
+        } else {
+            return (this.getFatorIncremento() - (this.getFatorIncremento()*coeficiente));
+        }
     }
 
     @Override

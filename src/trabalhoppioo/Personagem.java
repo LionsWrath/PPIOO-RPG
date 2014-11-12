@@ -5,7 +5,7 @@ public abstract class Personagem {
     private String nome;
     private int quantidadeVida;
     private int maxvida;
-    
+
     private int bonusDano;
     private int bonusResistencia;
 
@@ -27,7 +27,7 @@ public abstract class Personagem {
             if (nome == null) {
                 throw new PersonagemException();
             }
-        this.nome = nome;
+            this.nome = nome;
         } catch (PersonagemException pe) {
             //Ver o que fazer aqui
         }
@@ -39,13 +39,15 @@ public abstract class Personagem {
     }
 
     public void setQuantidadeVida(int quantidadeVida) {
-        this.quantidadeVida = quantidadeVida;
-        if (this.quantidadeVida > (this.maxvida + this.maxvida*0.10)) {
-            this.quantidadeVida = this.maxvida;
-        }
-        if (this.quantidadeVida < 0) {
-            this.quantidadeVida = 0;
-        }
+        if (this.quantidadeVida != 0) {
+            this.quantidadeVida = quantidadeVida;
+            if (this.quantidadeVida > (this.maxvida + this.maxvida * 0.10)) {
+                this.quantidadeVida = (int) (this.maxvida + this.maxvida * 0.10);
+            }
+            if (this.quantidadeVida < 0) {
+                this.quantidadeVida = 0;
+            }
+        } 
     }
 
     //
@@ -59,7 +61,7 @@ public abstract class Personagem {
             this.bonusDano = 150;
         }
     }
-    
+
     public void zeroBonusDano() {
         this.bonusDano = 0;
     }
@@ -75,7 +77,7 @@ public abstract class Personagem {
             this.bonusResistencia = 100;
         }
     }
-    
+
     public void zeroBonusResistencia() {
         this.bonusResistencia = 0;
     }
@@ -83,13 +85,13 @@ public abstract class Personagem {
     public int getMaxvida() {
         return maxvida;
     }
-    
+
     //Métodos abstratos
     public abstract int getDano();
-    
+
     public abstract int getResistencia();
-    
+
     public abstract int atacar(Personagem atacado);
-    
+
     public abstract void defender();
 }
